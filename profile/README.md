@@ -8,7 +8,7 @@
 
 # 🌍 Projet Résurgence
 
-### *Serveur RP Géopolitique Post-Apocalyptique — An 2303*
+### _Serveur RP Géopolitique Post-Apocalyptique — An 2303_
 
 [![Site Web](https://img.shields.io/badge/🌐_Site_Web-projet--resurgence.fr-0d1117?style=for-the-badge&labelColor=161b22)](https://projet-resurgence.fr)
 [![Discord](https://img.shields.io/badge/💬_Discord-Rejoindre-5865F2?style=for-the-badge&labelColor=161b22)](https://discord.projet-resurgence.fr)
@@ -83,14 +83,14 @@ Toute l'infrastructure tourne sous **Docker** sur un VPS, orchestrée par un mon
 
 <div align="center">
 
-| Couche | Technologies |
-|:---:|:---|
-| 🌐 **Frontend** | HTML/CSS/JS · Vite · Maplib · Nginx |
-| ⚙️ **Backend** | Python · Flask · SQLAlchemy · discord.py |
-| 🗃️ **Base de données** | PostgreSQL 16 · Alembic (migrations) |
-| 🤖 **Bots Discord** | C.L.E.A (gameplay) · M.A.R.C (gamemaster) |
-| 🗺️ **Cartographie** | MapLib (C++/pybind11) · OpenMP |
-| 📦 **Infra** | Docker · Docker Compose · GHCR · Let's Encrypt |
+|         Couche         | Technologies                                   |
+| :--------------------: | :--------------------------------------------- |
+|    🌐 **Frontend**     | HTML/CSS/JS · Vite · Maplib · Nginx            |
+|     ⚙️ **Backend**     | Python · Flask · SQLAlchemy · discord.py       |
+| 🗃️ **Base de données** | PostgreSQL 16 · Alembic (migrations)           |
+|  🤖 **Bots Discord**   | C.L.E.A (gameplay) · M.A.R.C (gamemaster)      |
+|  🗺️ **Cartographie**   | MapLib (C++/pybind11) · OpenMP                 |
+|      📦 **Infra**      | Docker · Docker Compose · GHCR · Let's Encrypt |
 
 </div>
 
@@ -100,23 +100,23 @@ Toute l'infrastructure tourne sous **Docker** sur un VPS, orchestrée par un mon
 
 <div align="center">
 
-| Repo | Description | Stack |
-|:---|:---|:---:|
-| [`ProjetResurgence`](https://github.com/Projet-Resurgence/ProjetResurgence) | 🏠 Monorepo & infra (docker-compose, nginx, CI/CD) | Docker |
-| [`CLEA`](https://github.com/Projet-Resurgence/CLEA) | 🤖 Bot Discord principal — économie, armées, construction | Python |
-| [`MARC`](https://github.com/Projet-Resurgence/MARC) | 🎮 Bot Discord Gamemaster — gestion du temps, événements | Python |
-| [`GameAPI`](https://github.com/Projet-Resurgence/GameAPI) | ⚙️ API REST du jeu | Flask |
-| [`PAPA`](https://github.com/Projet-Resurgence/PAPA) | 🛡️ Panel d'administration | Flask |
-| [`Bots-Commons`](https://github.com/Projet-Resurgence/Bots-Commons) | 📦 Bibliothèque partagée (ORM, utils, currency) | Python |
-| [`MapLib`](https://github.com/Projet-Resurgence/MapLib) | 🗺️ Moteur de rendu cartographique C++ | C++ / pybind11 |
-| [`OnlineMap`](https://github.com/Projet-Resurgence/OnlineMap) | 🌍 Carte interactive web | Vite / Leaflet |
-| [`Kanbanizer`](https://github.com/Projet-Resurgence/Kanbanizer) | 📋 Tableau Kanban interne | Flask |
-| [`Docs-Hub`](https://github.com/Projet-Resurgence/Docs-Hub) | 📚 Documentation en ligne | Flask |
-| [`TechPanel`](https://github.com/Projet-Resurgence/TechPanel) | 🔬 Panel des technologies | Flask |
-| [`LLMChatWrapper`](https://github.com/Projet-Resurgence/LLMChatWrapper) | 🧠 Wrapper AI / LLM | Python |
-| [`WebCalculator`](https://github.com/Projet-Resurgence/WebCalculator) | 🧮 Calculateur économique web | Flask |
-| [`WebAuth-Handler`](https://github.com/Projet-Resurgence/WebAuth-Handler) | 🔐 Authentification Discord OAuth2 | Flask |
-| [`projet-resurgence.github.io`](https://github.com/Projet-Resurgence/projet-resurgence.github.io) | 🌐 Site vitrine | HTML/CSS/JS |
+| Repo                                                                                              | Description                                               |     Stack      |
+| :------------------------------------------------------------------------------------------------ | :-------------------------------------------------------- | :------------: |
+| [`ProjetResurgence`](https://github.com/Projet-Resurgence/ProjetResurgence)                       | 🏠 Monorepo & infra (docker-compose, nginx, CI/CD)        |     Docker     |
+| [`CLEA`](https://github.com/Projet-Resurgence/CLEA)                                               | 🤖 Bot Discord principal — économie, armées, construction |     Python     |
+| [`MARC`](https://github.com/Projet-Resurgence/MARC)                                               | 🎮 Bot Discord Gamemaster — gestion du temps, événements  |     Python     |
+| [`GameAPI`](https://github.com/Projet-Resurgence/GameAPI)                                         | ⚙️ API REST du jeu                                        |     Flask      |
+| [`PAPA`](https://github.com/Projet-Resurgence/PAPA)                                               | 🛡️ Panel d'administration                                 |     Flask      |
+| [`Bots-Commons`](https://github.com/Projet-Resurgence/Bots-Commons)                               | 📦 Bibliothèque partagée (ORM, utils, currency)           |     Python     |
+| [`MapLib`](https://github.com/Projet-Resurgence/MapLib)                                           | 🗺️ Moteur de rendu cartographique C++                     | C++ / pybind11 |
+| [`OnlineMap`](https://github.com/Projet-Resurgence/OnlineMap)                                     | 🌍 Carte interactive web                                  | Vite / Leaflet |
+| [`Kanbanizer`](https://github.com/Projet-Resurgence/Kanbanizer)                                   | 📋 Tableau Kanban interne                                 |     Flask      |
+| [`Docs-Hub`](https://github.com/Projet-Resurgence/Docs-Hub)                                       | 📚 Documentation en ligne                                 |     Flask      |
+| [`TechPanel`](https://github.com/Projet-Resurgence/TechPanel)                                     | 🔬 Panel des technologies                                 |     Flask      |
+| [`LLMChatWrapper`](https://github.com/Projet-Resurgence/LLMChatWrapper)                           | 🧠 Wrapper AI / LLM                                       |     Python     |
+| [`WebCalculator`](https://github.com/Projet-Resurgence/WebCalculator)                             | 🧮 Calculateur économique web                             |     Flask      |
+| [`WebAuth-Handler`](https://github.com/Projet-Resurgence/WebAuth-Handler)                         | 🔐 Authentification Discord OAuth2                        |     Flask      |
+| [`projet-resurgence.github.io`](https://github.com/Projet-Resurgence/projet-resurgence.github.io) | 🌐 Site vitrine                                           |  HTML/CSS/JS   |
 
 </div>
 
@@ -126,16 +126,16 @@ Toute l'infrastructure tourne sous **Docker** sur un VPS, orchestrée par un mon
 
 <div align="center">
 
-| Service | URL |
-|:---:|:---:|
-| 🌐 Site vitrine | [`projet-resurgence.fr`](https://projet-resurgence.fr) |
-| 🛡️ Admin Panel | [`admin.projet-resurgence.fr`](https://admin.projet-resurgence.fr) |
-| ⚙️ API | [`api.projet-resurgence.fr`](https://api.projet-resurgence.fr) |
-| 🗺️ Carte | [`map.projet-resurgence.fr`](https://map.projet-resurgence.fr) |
-| 📚 Documentation | [`docs.projet-resurgence.fr`](https://docs.projet-resurgence.fr) |
-| 📋 Kanban | [`kanban.projet-resurgence.fr`](https://kanban.projet-resurgence.fr) |
-| 🧮 Calculateur | [`calc.projet-resurgence.fr`](https://calc.projet-resurgence.fr) |
-| 🔬 Tech Panel | [`tech.projet-resurgence.fr`](https://tech.projet-resurgence.fr) |
+|     Service      |                                 URL                                  |
+| :--------------: | :------------------------------------------------------------------: |
+| 🌐 Site vitrine  |        [`projet-resurgence.fr`](https://projet-resurgence.fr)        |
+|  🛡️ Admin Panel  |  [`admin.projet-resurgence.fr`](https://admin.projet-resurgence.fr)  |
+|      ⚙️ API      |    [`api.projet-resurgence.fr`](https://api.projet-resurgence.fr)    |
+|     🗺️ Carte     |    [`map.projet-resurgence.fr`](https://map.projet-resurgence.fr)    |
+| 📚 Documentation |   [`docs.projet-resurgence.fr`](https://docs.projet-resurgence.fr)   |
+|    📋 Kanban     | [`kanban.projet-resurgence.fr`](https://kanban.projet-resurgence.fr) |
+|  🧮 Calculateur  |   [`calc.projet-resurgence.fr`](https://calc.projet-resurgence.fr)   |
+|  🔬 Tech Panel   |   [`tech.projet-resurgence.fr`](https://tech.projet-resurgence.fr)   |
 
 </div>
 
