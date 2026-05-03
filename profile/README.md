@@ -17,7 +17,7 @@
 
 ---
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=100&lines=Le+monde+tel+que+nous+le+connaissions+n'existe+plus.;Des+cendres+de+l'ancien+monde%2C+de+nouvelles+nations+%C3%A9mergent.;L'an+2303.+L'humanit%C3%A9+se+reconstruit." alt="Typing animation" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=800&height=120&lines=Le+monde+tel+que+nous+le+connaissions+n'existe+plus.;Des+cendres+de+l'ancien+monde%2C+de+nouvelles+nations+%C3%A9mergent.;L'an+2303.+L'humanit%C3%A9+se+reconstruit." alt="Typing animation" width="800" height="120" />
 
 </div>
 
