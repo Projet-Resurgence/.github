@@ -1,0 +1,129 @@
+name: Security Audit
+
+on:
+  schedule:
+    # Run every Monday at 05:00 UTC
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  issues: write
+
+jobs:
+  python-safety:
+    name: Python — Safety Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Safety audit
+        run: |
+          pip install safety
+          echo "## Python Dependency Audit" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          for f in $(find . -name "requirements.txt" -not -path "*/llama.cpp/*" -not -path "*/node_modules/*"); do
+            echo "### $f" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            safety check -r "$f" --output text || true
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          done
+
+  node-audit:
+    name: Node.js — Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run npm audit
+        run: |
+          echo "## Node.js Dependency Audit" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          for d in $(find . -name "package.json" -not -path "*/llama.cpp/*" -not -path "*/node_modules/*" -exec dirname {} \;); do
+            echo "### $d" >> $GITHUB_STEP_SUMMARY
+            if [ -f "$d/package-lock.json" ]; then
+              (cd "$d" && npm audit --audit-level=moderate) 2>&1 | tee -a $GITHUB_STEP_SUMMARY || true
+            else
+              echo "No lockfile, skipping" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "" >> $GITHUB_STEP_SUMMARY
+          done
+
+  docker-base-images:
+    name: Docker — Base Image Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for outdated base images
+        run: |
+          echo "## Docker Base Image Audit" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Dockerfile | Base Image | Notes |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|---|" >> $GITHUB_STEP_SUMMARY
+
+          for f in $(find . -name "Dockerfile*" -not -path "*/llama.cpp/*"); do
+            img=$(grep -m1 "^FROM " "$f" | awk '{print $2}')
+            notes=""
+
+            # Check for known outdated patterns
+            if echo "$img" | grep -q "node:18"; then
+              notes="Node 18 is maintenance LTS, consider upgrading to 20+"
+            fi
+            if echo "$img" | grep -q "python:3.12"; then
+              notes="Python 3.12 is current"
+            fi
+            if echo "$img" | grep -q "python:3.13"; then
+              notes="Python 3.13 is latest"
+            fi
+            if echo "$img" | grep -qv "slim\|alpine"; then
+              notes="${notes:+$notes; }Consider using slim/alpine variant"
+            fi
+
+            echo "| \`$f\` | \`$img\` | $notes |" >> $GITHUB_STEP_SUMMARY
+          done
+
+  supply-chain-check:
+    name: Supply Chain — Typosquat Detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for known typosquat packages
+        run: |
+          echo "## Supply Chain — Typosquat Detection" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Known typosquat patterns to check
+          declare -A TYPOSQUATS=(
+            ["psutils"]="psutil (typo: extra 's')"
+            ["pyutil"]="pyutilib or util (ambiguous)"
+            ["python-util"]="python-utils (hyphen vs underscore)"
+            ["python-dateutil"]="safe (legitimate, just verify)"
+            ["requests"]="safe (legitimate, just verify)"
+            ["urllib3"]="safe (legitimate, just verify)"
+          )
+
+          FOUND=0
+          for f in $(find . -name "requirements.txt" -not -path "*/llama.cpp/*"); do
+            for pkg in "${!TYPOSQUATS[@]}"; do
+              if grep -qi "^${pkg}" "$f"; then
+                echo "**WARNING**: \`$pkg\` found in \`$f\` — ${TYPOSQUATS[$pkg]}" >> $GITHUB_STEP_SUMMARY
+                FOUND=1
+              fi
+            done
+          done
+
+          if [ $FOUND -eq 0 ]; then
+            echo "No known typosquat packages detected." >> $GITHUB_STEP_SUMMARY
+          fi

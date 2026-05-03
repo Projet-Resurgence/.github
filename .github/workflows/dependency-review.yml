@@ -13,15 +13,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Dependency Review (GitHub Native)
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          deny-licenses: GPL-3.0, AGPL-3.0
+          comment-summary-in-pr: always
+
       - name: Python — Safety check
-        if: hashFiles('requirements.txt') != ''
+        if: hashFiles('**/requirements.txt') != ''
         run: |
           pip install safety
-          safety check -r requirements.txt --json || true
+          for f in $(find . -name "requirements.txt" -not -path "*/llama.cpp/*" -not -path "*/node_modules/*"); do
+            echo "::group::Safety check: $f"
+            safety check -r "$f" --json || true
+            echo "::endgroup::"
+          done
 
       - name: Node — Audit
-        if: hashFiles('package-lock.json') != '' || hashFiles('package.json') != ''
+        if: hashFiles('**/package-lock.json') != '' || hashFiles('**/package.json') != ''
         run: |
-          if [ -f package.json ]; then
-            npm audit --audit-level=high || true
-          fi
+          for d in $(find . -name "package.json" -not -path "*/llama.cpp/*" -not -path "*/node_modules/*" -exec dirname {} \;); do
+            echo "::group::npm audit: $d"
+            (cd "$d" && [ -f package-lock.json ] && npm audit --audit-level=high || echo "No lockfile, skipping")
+            echo "::endgroup::"
+          done

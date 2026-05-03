@@ -1,0 +1,454 @@
+version: 2
+
+updates:
+  # Python dependencies for all services
+  - package-ecosystem: "pip"
+    directory: "/PR_API/src"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "Projet-Resurgence/admins"
+    labels:
+      - "dependencies"
+      - "python"
+      - "security"
+    commit-message:
+      prefix: "deps(pr-api)"
+    groups:
+      flask-ecosystem:
+        patterns:
+          - "Flask*"
+          - "Werkzeug"
+          - "gunicorn"
+      sqlalchemy-ecosystem:
+        patterns:
+          - "SQLAlchemy"
+          - "alembic"
+          - "psycopg2*"
+
+  - package-ecosystem: "pip"
+    directory: "/Game-Dashboard"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(game-dashboard)"
+
+  - package-ecosystem: "pip"
+    directory: "/TechPanel"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(techpanel)"
+
+  - package-ecosystem: "pip"
+    directory: "/PAPA"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(papa)"
+
+  - package-ecosystem: "pip"
+    directory: "/WebAuth-Handler"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(webauth)"
+
+  - package-ecosystem: "pip"
+    directory: "/Kanbanizer"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(kanbanizer)"
+
+  - package-ecosystem: "pip"
+    directory: "/WebCalculator"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(webcalculator)"
+
+  - package-ecosystem: "pip"
+    directory: "/LLM_api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(llm-api)"
+
+  - package-ecosystem: "pip"
+    directory: "/bots/CLEA"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+      - "bot"
+    commit-message:
+      prefix: "deps(clea)"
+
+  - package-ecosystem: "pip"
+    directory: "/bots/MARC"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+      - "bot"
+    commit-message:
+      prefix: "deps(marc)"
+
+  - package-ecosystem: "pip"
+    directory: "/bots/DocsHub"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(docshub)"
+
+  - package-ecosystem: "pip"
+    directory: "/Customizable-Military-Catalog"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(military-catalog)"
+
+  - package-ecosystem: "pip"
+    directory: "/OnlineMap/scripts"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(onlinemap-scripts)"
+
+  # Node.js dependencies
+  - package-ecosystem: "npm"
+    directory: "/OnlineMap"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+    commit-message:
+      prefix: "deps(onlinemap)"
+    groups:
+      react-vendor:
+        patterns:
+          - "react"
+          - "react-dom"
+      maplibre:
+        patterns:
+          - "maplibre*"
+      vite-ecosystem:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+
+  - package-ecosystem: "npm"
+    directory: "/rp-text-block"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "javascript"
+    commit-message:
+      prefix: "deps(rp-text-block)"
+
+  # Docker base images
+  - package-ecosystem: "docker"
+    directory: "/PR_API"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-pr-api)"
+
+  - package-ecosystem: "docker"
+    directory: "/Game-Dashboard"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-game-dashboard)"
+
+  - package-ecosystem: "docker"
+    directory: "/TechPanel"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-techpanel)"
+
+  - package-ecosystem: "docker"
+    directory: "/PAPA"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-papa)"
+
+  - package-ecosystem: "docker"
+    directory: "/WebAuth-Handler"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-webauth)"
+
+  - package-ecosystem: "docker"
+    directory: "/Kanbanizer"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-kanbanizer)"
+
+  - package-ecosystem: "docker"
+    directory: "/LLM_api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-llm-api)"
+
+  - package-ecosystem: "docker"
+    directory: "/bots/CLEA"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-clea)"
+
+  - package-ecosystem: "docker"
+    directory: "/bots/MARC"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-marc)"
+
+  - package-ecosystem: "docker"
+    directory: "/bots/DocsHub"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-docshub)"
+
+  - package-ecosystem: "docker"
+    directory: "/Customizable-Military-Catalog"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-military-catalog)"
+
+  - package-ecosystem: "docker"
+    directory: "/OnlineMap"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-onlinemap)"
+
+  - package-ecosystem: "docker"
+    directory: "/resurgence-web"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-resurgence-web)"
+
+  - package-ecosystem: "docker"
+    directory: "/docker/db"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker-db)"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci-cd"
+    commit-message:
+      prefix: "deps(ci)"
