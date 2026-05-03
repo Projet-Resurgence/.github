@@ -1,0 +1,27 @@
+name: Dependency Review
+
+on:
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python — Safety check
+        if: hashFiles('requirements.txt') != ''
+        run: |
+          pip install safety
+          safety check -r requirements.txt --json || true
+
+      - name: Node — Audit
+        if: hashFiles('package-lock.json') != '' || hashFiles('package.json') != ''
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high || true
+          fi

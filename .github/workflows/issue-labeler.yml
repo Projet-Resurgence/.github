@@ -1,0 +1,51 @@
+name: Issue Labeler
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.issue.title.toLowerCase();
+            const body = context.payload.issue.body?.toLowerCase() || '';
+            const labels = [];
+
+            if (title.includes('bug') || title.includes('fix') || body.includes('bug') || body.includes('error')) {
+              labels.push('bug');
+            }
+            if (title.includes('feature') || title.includes('add') || title.includes('enhancement')) {
+              labels.push('enhancement');
+            }
+            if (title.includes('question') || title.includes('help') || title.includes('how')) {
+              labels.push('question');
+            }
+            if (title.includes('doc') || title.includes('readme')) {
+              labels.push('documentation');
+            }
+            if (title.includes('security') || title.includes('vulnerability')) {
+              labels.push('security');
+            }
+            if (title.includes('docker') || title.includes('compose')) {
+              labels.push('docker');
+            }
+            if (title.includes('ci') || title.includes('workflow') || title.includes('github action')) {
+              labels.push('ci-cd');
+            }
+
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: labels
+              });
+            }
