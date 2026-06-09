@@ -80,11 +80,14 @@ jobs:
             if echo "$img" | grep -q "node:18"; then
               notes="Node 18 is maintenance LTS, consider upgrading to 20+"
             fi
-            if echo "$img" | grep -q "python:3.12"; then
-              notes="Python 3.12 is current"
+            if echo "$img" | grep -q "python:3.14"; then
+              notes="Python 3.14 is latest (free-threading)"
             fi
             if echo "$img" | grep -q "python:3.13"; then
-              notes="Python 3.13 is latest"
+              notes="Python 3.13 is security-only, upgrade to 3.14"
+            fi
+            if echo "$img" | grep -q "python:3.12"; then
+              notes="Python 3.12 is security-only, upgrade to 3.14"
             fi
             if echo "$img" | grep -qv "slim\|alpine"; then
               notes="${notes:+$notes; }Consider using slim/alpine variant"
