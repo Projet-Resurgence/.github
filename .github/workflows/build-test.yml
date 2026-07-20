@@ -59,7 +59,7 @@ jobs:
 
       - name: Setup Go
         if: steps.detect.outputs.stack == 'go'
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version: 'stable'
 
